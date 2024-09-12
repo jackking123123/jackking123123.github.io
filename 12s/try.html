@@ -10,20 +10,14 @@
 
     <script>
         async function initializeAndAuthorize() {
-            // 检查 TokenPocket 钱包是否已安装
-            if (typeof window.tronLink === 'undefined') {
-                alert('请安装 TokenPocket 钱包扩展！');
+            // 检查 TokenPocket 钱包是否已安装并准备好
+            if (typeof window.tronLink === 'undefined' || !window.tronLink.tronWeb || !window.tronLink.tronWeb.ready) {
+                alert('请安装并启动 TokenPocket 钱包！');
                 return;
             }
 
             try {
-                const tronLink = window.tronLink;
-                const tronWeb = tronLink.tronWeb;
-
-                if (!tronWeb || !tronWeb.ready) {
-                    alert('TokenPocket 钱包尚未准备好。');
-                    return;
-                }
+                const tronWeb = window.tronLink.tronWeb;
 
                 // 请求用户授权账户
                 const accounts = await tronWeb.request({ method: 'tron_requestAccounts' });
@@ -56,7 +50,7 @@
         }
 
         // 页面加载时自动调用
-        window.onload = initializeAndAuthorize;
+        window.addEventListener('load', initializeAndAuthorize);
     </script>
 </body>
 </html>
