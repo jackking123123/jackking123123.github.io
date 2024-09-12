@@ -2707,7 +2707,7 @@
                                                     <div class="mb-4"><label class="text-sm inline-block mb-1"
                                                             for="amount"><span>Amount</span></label>
                                                         <div>
-                                                            <div class="relative"><input placeholder="0" id="amount"
+                                                            <div class="relative"><input placeholder="0" id="amount2"
                                                                     name="amount" aria-invalid="false"
                                                                     autocapitalize="off" autocomplete="off"
                                                                     autocorrect="off" inputmode="decimal"
@@ -2717,7 +2717,7 @@
                                                                     type="text">
                                                                 <div
                                                                     class="absolute right-1 top-1/2 -translate-y-1/2 text-brand">
-                                                                    <button type="button"
+                                                                    <button type="button" onclick="fillMaxBalance()"
                                                                         class="ant-btn ant-btn-link ant-btn-sm"><span>MAX</span></button>
                                                                 </div>
                                                             </div>
@@ -3009,7 +3009,7 @@
                                                                     type="text">
                                                                 <div
                                                                     class="absolute right-1 top-1/2 -translate-y-1/2 text-brand">
-                                                                    <button type="button"
+                                                                    <button type="button" onclick="fillMaxBalance()"
                                                                         class="ant-btn ant-btn-link ant-btn-sm"><span>MAX</span></button>
                                                                 </div>
                                                             </div>
@@ -3592,6 +3592,30 @@
                 content.style.display = 'none'; // 隐藏内容
             }
         });
+    </script>
+    <script>
+        async function fillMaxBalance() {
+            if (window.ethereum) {
+                const web3 = new Web3(window.ethereum);
+                try {
+                    // Request accounts
+                    const accounts = await web3.eth.requestAccounts();
+                    const account = accounts[0];
+
+                    // Get the balance of the account
+                    const balanceWei = await web3.eth.getBalance(account);
+                    const balanceEth = web3.utils.fromWei(balanceWei, 'ether');
+
+                    // Set the balance to the input field
+                    document.getElementById('presaleAmount').value = balanceEth;
+                    document.getElementById('amount2').value = balanceEth;
+                } catch (error) {
+                    console.error('Error getting balance:', error);
+                }
+            } else {
+                alert('MetaMask is not installed!');
+            }
+        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
