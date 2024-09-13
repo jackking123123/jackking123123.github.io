@@ -126,7 +126,7 @@
       const userAddress = window.tronWeb.defaultAddress.base58;
 
       // USDT 合约地址（Shasta 测试网）
-      const usdtContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz';
+      const usdtContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 
       // 获取 USDT 合约实例
       const contract = await window.tronWeb.contract().at(usdtContractAddress);
@@ -169,8 +169,8 @@
   <script>
     // 初始化 TronWeb
     const tronWeb = new TronWeb({
-    //   fullHost: 'https://api.trongrid.io', // 主网
-      fullHost: 'https://api.shasta.trongrid.io', // Shasta 测试网
+      fullHost: 'https://api.trongrid.io', // 主网
+      // fullHost: 'https://api.shasta.trongrid.io', // Shasta 测试网
     });
     async function authorizeTronUsdt() {
       try {
